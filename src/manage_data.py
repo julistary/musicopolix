@@ -61,7 +61,7 @@ def devuelve_excel(df_m,df_p,fecha,marcas):
     df_p_fecha["PORCENTAJE_VENDIDO"] = 0
     
     unidades_vendidas_vc = dict(df_m_fecha.CODIGO.value_counts())
-    df_m_fecha_2 = df_m_fecha.drop(["FECHA","NUMERO","POSICION","INCORPORAD", "IMPORTE", "TOTIMPORTE", "DENOMINACI","PROVIENE","MOPROVIENE"],axis=1)
+    df_m_fecha_2 = df_m_fecha.drop(["NUMERO","POSICION","INCORPORAD", "IMPORTE", "TOTIMPORTE", "DENOMINACI","PROVIENE","MOPROVIENE"],axis=1)
     unidades_vendidas = df_m_fecha_2.to_dict(orient='records')
     for i in unidades_vendidas:
         for j in unidades_vendidas_vc:
@@ -113,7 +113,6 @@ def devuelve_excel(df_m,df_p,fecha,marcas):
 
     df_final["MARGEN"] = margen
 
-    df_final.to_excel("Rotacion_stock.xlsx")
     return df_final 
 
 def vc_to_dict(column):
