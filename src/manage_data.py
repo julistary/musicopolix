@@ -5,6 +5,7 @@ from openpyxl import Workbook
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+
 def limpiar_productos(productos):
     df_p= pd.read_csv(productos,sep = ';', header = None, encoding= 'unicode_escape')
     df_p.rename(columns = {0 : "CODIGO", 1: "DESCRIPCIO", 2:"PRECIOV", 3: "PRECIOCOMP", 4: "EXISTENCIA",
@@ -90,6 +91,27 @@ def devuelve_excel(df_m,df_p,fecha,marcas):
                 a = marca
         lista_para_columna_marcas.append(a)
     df_final["MARCA"] = lista_para_columna_marcas
+
+    def floating(row):
+        try:
+            return float(row)
+        except:
+            return row 
+
+    df_final.PRECIOV = df_final.PRECIOV.apply(floating)
+    df_final.ULTPRECIOCOM = df_final.ULTPRECIOCOM.apply(floating)
+
+    venta = list(df_final.PRECIOV)
+    compra = list(df_final.ULTPRECIOCOM)
+    margen = []
+
+    for v,c in zip(venta,compra):
+        try:
+            margen.append(v - c)
+        except: 
+            margen.append("Unknown")
+
+    df_final["MARGEN"] = margen
 
     df_final.to_excel("Rotacion_stock.xlsx")
     return df_final 
