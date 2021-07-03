@@ -17,8 +17,8 @@ m = pd.read_csv("Marcas.csv")
 recordatorio = st.button('RECORDATORIO!')
 if recordatorio:
     st.write("Para pasar un CSV a Excel: 1. Abrir con excel 2. Seleccionar la primera columna 3. Datos 4. Texto en columnas 5. Delimitados ")
-    st.write("Antes de subir los CSVs de PRODUCTOS y MOVIMIENTOS tienes que borrar la primera columna en blanco del excel")
-    st.write("El CSV de MaARCAS tiene que tener el siguiente formato: ")
+    st.write("Antes de subir los CSVs de PRODUCTOS (columna H) y MOVIMIENTOS (columna L) tienes que borrar la primera columna en blanco del excel")
+    st.write("El CSV de MARCAS tiene que tener el siguiente formato: ")
     st.write(m)
 productos = st.file_uploader("Sube el CSV de PRODUCTOS")
 
