@@ -107,7 +107,7 @@ def devuelve_excel(df_m,df_p,fecha,marcas):
 
     for v,c in zip(venta,compra):
         try:
-            margen.append(v - c)
+            margen.append((1 - c/v)*100)
         except: 
             margen.append("Unknown")
 
